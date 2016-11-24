@@ -1,4 +1,4 @@
-# Crater-Scraper
+# Crater-Scraper / Crater Identification
 Identifying Craters left from wepons test using Convolutional Neural Network.
 
 This repository is a machine learning exploration into trying to identify bomb craters. 
