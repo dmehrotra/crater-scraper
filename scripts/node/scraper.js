@@ -25,3 +25,4 @@ google.staticMap(params, function(err, binaryImage) {
     );
   })
 });
+ 
