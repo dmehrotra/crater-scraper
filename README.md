@@ -13,5 +13,6 @@ Installation:
 You need dlib and scikit-image.
 
 -----------------------------------
-
-11/24 - Script to convert crater images into Histogram of Oriented Gradients — or just HOG for short.
+11/23 - Script to collect a google map of crater site and save as cropped image. 
+11/24 - Script to convert crater images into Histogram of Oriented Gradients.
+11/25 - Compiled CSVs of nuclear tests and coordinates
