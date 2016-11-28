@@ -4,9 +4,6 @@ var google = new GoogleMapsAPI();
 var cropper = require('easyimage')
 var cleaner = require('./cleaner.js')
 var _ = require('underscore')
-EXITCONDITION = false
-
-
 
  
 var sites = cleaner.begin()

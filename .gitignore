@@ -1,3 +1,4 @@
 /scripts/node/node_modules
-/images
+/scripts/images
+/scripts/hog
 *.zip
