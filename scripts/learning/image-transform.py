@@ -6,6 +6,7 @@ from skimage import data
 from skimage.color import rgb2gray
 import matplotlib.pyplot as plt
 from skimage import io
+import tensorflow as tf
 
 import requests
 from StringIO import StringIO
@@ -124,18 +125,55 @@ blur_gaussian_kernel = np.array([[1,2,1],
 
 lion_transf_blur_box = conv_2d_kernel(lion_arr, kernel = blur_box_kernel, squash_pixels = True)
 lion_transf_blur_gaussian = conv_2d_kernel(lion_arr, kernel = blur_gaussian_kernel, squash_pixels = True)
+# f, ax_array = plt.subplots(3, 1)
+# f.set_figheight(15)
+# f.set_figwidth(12)
+
+# ax_array[0].imshow(lion_arr, cmap = plt.get_cmap('gray'))
+# ax_array[0].set_title('Original Image')
+# ax_array[0].axis('off')
+# ax_array[1].imshow(lion_transf_blur_box, cmap = plt.get_cmap('gray'))
+# ax_array[1].set_title('Box Kernel Blur')
+# ax_array[1].axis('off')
+# ax_array[2].imshow(lion_transf_blur_gaussian, cmap = plt.get_cmap('gray'))
+# ax_array[2].set_title('Gaussian Kernel Blur')
+# ax_array[2].axis('off')
+
+# plt.show()
+# https://beckernick.github.io/convolutions/
+
+
+
+# TENSOR FLOW
+
+lion_array_4d = lion_arr.reshape(-1, 350, 500, 1)
+blur_kernel_4d = blur_box_kernel.reshape(3, 3, 1, 1)
+
+
+graph = tf.Graph()
+with graph.as_default():
+    tf_input_image = tf.Variable(np.array(lion_array_4d, dtype = np.float32))
+    tf_blur_kernel = tf.Variable(np.array(blur_kernel_4d, dtype = np.float32))    
+    tf_convolution_output = tf.nn.conv2d(tf_input_image, tf_blur_kernel, strides = [1, 1, 1, 1], padding = 'SAME')
+
+with tf.Session(graph = graph) as sess:
+    tf.initialize_all_variables().run()
+    transformed_image = tf_convolution_output.eval()
+    transformed_image = transformed_image[0, :, :, 0]
+
+np.testing.assert_array_almost_equal(lion_transf_blur_box, transformed_image,
+                             decimal = 4)
+
 f, ax_array = plt.subplots(3, 1)
 f.set_figheight(15)
 f.set_figwidth(12)
-
 ax_array[0].imshow(lion_arr, cmap = plt.get_cmap('gray'))
-ax_array[0].set_title('Original Image')
 ax_array[0].axis('off')
 ax_array[1].imshow(lion_transf_blur_box, cmap = plt.get_cmap('gray'))
-ax_array[1].set_title('Box Kernel Blur')
 ax_array[1].axis('off')
-ax_array[2].imshow(lion_transf_blur_gaussian, cmap = plt.get_cmap('gray'))
-ax_array[2].set_title('Gaussian Kernel Blur')
+ax_array[2].imshow(transformed_image, cmap = plt.get_cmap('gray'))
 ax_array[2].axis('off')
-
 plt.show()
+
+
+# this compares the tensor flow output with o
