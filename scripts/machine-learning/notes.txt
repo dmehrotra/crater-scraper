@@ -1,0 +1,9 @@
+CNN - black box that constructus features that we would otherwise have to hand craft. 
+these abstract features are so generalized that they account for varience. If we want to train ourselves we need a lot of computing power and time . 
+
+Inception: pretrained css model. trained on google with 100k images....transfer learning, applying learning from a prev training session to a new sesiion.
+
+we feed in imags at inputat each layer it will perform a series of operations until it ouputs a classificatio.....eahch layer is a different set of abstraction...edge detction, shape detection etc...
+
+last layer should be trained on features of craters so it can add a representation to its repository of representations
+
