@@ -33,7 +33,14 @@ Installation:
 11/24 - Script to convert crater images into Histogram of Oriented Gradients.
 11/25 - Compiled CSVs of nuclear tests and coordinates
 11/26 - Gathered all images...around 2000
+12/3 - Convolution with Tensorflow
+12/5 - Neural Net with tensor flow
+12/7 - retrain.py to train the final layer of a pretrained inception model
+12/9 - classifying images
 
+*** current status ***
+
+This works to identify craters with better than average results.  However, it is easy to fool if you feed an image of a desert to the network. Still is valuable code if all you want to do is scrape all 2000 images.
 
 Thanks to johnston archives.
 
