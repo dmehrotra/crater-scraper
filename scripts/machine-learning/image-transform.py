@@ -12,7 +12,7 @@ import requests
 from StringIO import StringIO
 
 # ensure the image is in grayscale 
-img = rgb2gray(io.imread('/Users/Mehrotra/projects/crater-scraping/scripts/images/Whetstone1964720'));
+img = rgb2gray(io.imread('/Users/Mehrotra/projects/crater-scraping/scripts/machine-learning/tf_files/test_sites/nuclear_test_sites/Whetstone1964720.jpg.jpeg'));
 lion_arr = np.array(img)
 
 
