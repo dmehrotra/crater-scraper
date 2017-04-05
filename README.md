@@ -28,7 +28,7 @@ Installation:
    images:
     ```
     cd scripts/node
-    npm install googlemaps easyimage fast-csv
+    npm install googlemaps easyimage fast-csv turf @turf/invariant
     mkdir -p ../../images/crater ../../images/no_crater
     ```
 
