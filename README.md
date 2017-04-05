@@ -47,15 +47,23 @@ This should take about 10 minutes to collect approximately 2000
 images.
 
 4. Run random_scraper.js to gather satellite imagery of random places.
+
+5. Convert the PNG images to JPG:
+
+```
+cd images/crater
+find . -type f -print0 | xargs -0 -n 1 -P 6 -I {} sh -c "gm convert {} -quality 90 {}.jpg && rm {}"
+cd images/no_crater
+find . -type f -print0 | xargs -0 -n 1 -P 6 -I {} sh -c "gm convert {} -quality 90 {}.jpg && rm {}"
+```
+
 5. Train the model:
 ```
 python tensorflow/tensorflow/examples/image_retraining/retrain.py \
---bottleneck_dir=./tf_files/bottlenecks \
---how_many_training_steps 500 \
---model_dir=./tf_files/crater_inception \
+--how_many_training_steps 40000 \
 --output_graph=./tf_files/retrained_graph.pb \
 --output_labels=./tf_files/retrained_labels.txt \
---image_dir=./tf_files/test_sites
+--image_dir=images
 ``
 
 5. run tf-classifier
