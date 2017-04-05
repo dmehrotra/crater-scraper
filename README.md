@@ -53,7 +53,7 @@ Installation:
     ```
     cd images/crater
     find . -type f -print0 | xargs -0 -n 1 -P 6 -I {} sh -c "gm convert {} -quality 90 {}.jpg && rm {}"
-    cd images/no_crater
+    cd ../images/no_crater
     find . -type f -print0 | xargs -0 -n 1 -P 6 -I {} sh -c "gm convert {} -quality 90 {}.jpg && rm {}"
     ```
 
