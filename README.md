@@ -26,11 +26,11 @@ Installation:
 
 2. Install the node prerequisites and create a directory to hold
    images:
-```
-cd scripts/node
-npm install googlemaps easyimage fast-csv
-mkdir -p ../../images/crater ../../images/no_crater
-```
+    ```
+    cd scripts/node
+    npm install googlemaps easyimage fast-csv
+    mkdir -p ../../images/crater ../../images/no_crater
+    ```
 
 3. Generate a Google Static Maps API key by going to
    the
@@ -39,9 +39,9 @@ mkdir -p ../../images/crater ../../images/no_crater
    `scripts/node/config.js`.
 
 3. Run scraper.js to gather nuclear test site images:
-```
-node scraper.js
-```
+    ```
+    node scraper.js
+    ```
 
 This should take about 10 minutes to collect approximately 2000
 images.
@@ -64,7 +64,7 @@ python tensorflow/tensorflow/examples/image_retraining/retrain.py \
 --output_graph=./tf_files/retrained_graph.pb \
 --output_labels=./tf_files/retrained_labels.txt \
 --image_dir=images
-``
+```
 
 5. run tf-classifier
 
