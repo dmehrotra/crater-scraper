@@ -75,7 +75,7 @@ layer2_biases_array = np.zeros((1, num_labels))
 
 
 
-for step in xrange(5001):
+for step in range(5001):
 
     input_layer = np.dot(training_data, layer1_weights_array)
     hidden_layer = relu_activation(input_layer + layer1_biases_array)
@@ -105,14 +105,14 @@ for step in xrange(5001):
     layer2_biases_array -= learning_rate * gradient_layer2_bias
     
     if step % 500 == 0:
-            print 'Loss at step {0}: {1}'.format(step, loss)
+        print('Loss at step {0}: {1}'.format(step, loss))
 
 
 input_layer = np.dot(test_dataset, layer1_weights_array)
 hidden_layer = relu_activation(input_layer + layer1_biases_array)
 scores = np.dot(hidden_layer, layer2_weights_array) + layer2_biases_array
 probs = softmax(scores)
-print 'Test accuracy: {0}%'.format(accuracy(probs, test_labels))
+print('Test accuracy: {0}%'.format(accuracy(probs, test_labels)))
 
 labels_flat = np.argmax(test_labels, axis = 1)
 predictions = np.argmax(probs, axis = 1)

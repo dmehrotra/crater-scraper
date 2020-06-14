@@ -1,6 +1,8 @@
 import tensorflow as tf
 import sys
 
+print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
+
 # change this as you see fit
 image_path = sys.argv[1]
 
