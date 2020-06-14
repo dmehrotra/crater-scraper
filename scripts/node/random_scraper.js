@@ -30,8 +30,8 @@ function run(data) {
       maptype: 'satellite',
       center: center
     };
-    var filename = '../../images/no_crater/' +v['SERIES'] + v['YEAR'] + k + '.png';
-    filename = filename.replace(' ', '_');
+    var filename = '../../images/no_crater/' + v['SERIES'] + v['SHOT'] + v['YEAR'] + k + '.png';
+    filename = filename.replace(' ', '_').replace('(', '_').replace(')', '_');
     if (!fs.existsSync(filename)) {
       n += 1;
       setTimeout(
@@ -49,7 +49,7 @@ function run(data) {
             console.log(params.center);
             fs.writeFile(filename, binaryImage, 'binary', function(err){
               cropper.rescrop({
-                src:v['SERIES']+v['YEAR']+k, dst:v['SERIES']+v['YEAR']+k,
+                src:v['SERIES'] + v['SHOT'] + v['YEAR'] + k, dst:v['SERIES'] + v['SHOT'] + v['YEAR'] + k,
                 width:500, height:400,
                 cropwidth:500, cropheight:350
               }).then(
