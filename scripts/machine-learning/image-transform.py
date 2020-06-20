@@ -6,16 +6,14 @@ from skimage import data
 from skimage.color import rgb2gray
 import matplotlib.pyplot as plt
 from skimage import io
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 import requests
-from StringIO import StringIO
+from io import StringIO
 
 # ensure the image is in grayscale 
-img = rgb2gray(io.imread('/Users/Mehrotra/projects/crater-scraping/scripts/machine-learning/tf_files/test_sites/nuclear_test_sites/Whetstone1964720.jpg.jpeg'));
+img = rgb2gray(io.imread('../../2.jpeg'))
 lion_arr = np.array(img)
-
-
 
 
 padded_array = np.pad(lion_arr, (1, 1), 'constant')
@@ -24,8 +22,8 @@ kernel = np.array([[0, 0, 0], [0, 1, 0], [0, 0, 0]])
 
 output_array = np.zeros(lion_arr.shape)
 
-for i in xrange(padded_array.shape[0]-2):
-    for j in xrange(padded_array.shape[1]-2):
+for i in range(padded_array.shape[0]-2):
+    for j in range(padded_array.shape[1]-2):
         temp_array = padded_array[i:i+3, j:j+3]
         output_array[i, j] = np.sum(temp_array*kernel)
 
@@ -46,8 +44,8 @@ def conv_2d_kernel(image_array_2d, kernel, squash_pixels = True):
     
     transformed_array = np.zeros(image_array_2d.shape)
  
-    for i in xrange(padded_array.shape[0] - kernel_width + 1):
-        for j in xrange(padded_array.shape[1] - kernel_height + 1):
+    for i in range(padded_array.shape[0] - kernel_width + 1):
+        for j in range(padded_array.shape[1] - kernel_height + 1):
             temp_array = padded_array[i:i+kernel_width, j:j+kernel_height]
             #print temp_array.shape
             if squash_pixels:

@@ -4,7 +4,6 @@ var cropper = require('easyimage');
 var cleaner = require('./cleaner.js');
 var config = require('./config.js');
 var _ = require('underscore');
-
 var google = new GoogleMapsAPI(config.googleMapsApiConfig);
 
 var sites = cleaner.begin();
@@ -21,8 +20,8 @@ function run(data) {
       maptype: 'satellite',
       center:v['LAT'] + " " + v["LONG"]
     };
-    var filename = '../../images/crater/' + v['SERIES'] + v['YEAR'] + k + '.png';
-    filename = filename.replace(' ', '_');
+    var filename = '../../images/crater/' + v['SERIES'] + v['SHOT'] + v['YEAR'] + k + '.png';
+    filename = filename.replace(' ', '_').replace('(', '_').replace(')', '_');
     if (!fs.existsSync(filename)) {
       n += 1;
       setTimeout(
@@ -35,9 +34,11 @@ function run(data) {
             if (binaryImage) {
               console.log('Writing ' + filename);
               fs.writeFile(filename, binaryImage, 'binary', function(err){
-                if (err) throw err;
+                if (err) {
+                  console.log('Skipping ' + filename + '; Error: ' + err);
+                }
                 cropper.rescrop({
-                  src:v['SERIES']+v['YEAR']+k, dst:v['SERIES']+v['YEAR']+k,
+                  src:v['SERIES'] + v['SHOT'] + v['YEAR'] + k, dst:v['SERIES'] + v['SHOT'] + v['YEAR'] + k,
                   width:500, height:400,
                   cropwidth:500, cropheight:350
                 }).then(

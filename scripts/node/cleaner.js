@@ -5,11 +5,16 @@ var csv = require('fast-csv')
 function Cleaner(){
 	this.description = "Cleaner for parsing the csv";
 	this.raw = [
-		"./data/US-1945-1963.csv",
-		"./data/US-1964-1972.csv",
-		"./data/US-1973-1992.csv",
-		"./data/USSR-1964-1990.csv",
-		"./data/UK_FRANCE_CHINA-1964-1993.csv"
+		"./data/craters_fr.csv",
+		"./data/craters_ipnku.csv",
+		"./data/craters_prc.csv",
+		"./data/craters_uk.csv",
+		"./data/craters_usa1.csv",
+		"./data/craters_usa2.csv",
+		"./data/craters_usa3.csv",
+		"./data/craters_ussr1.csv",
+		"./data/craters_ussr2.csv",
+		"./data/craters_ussr3.csv"
 		]
 	this.sanitized_craters =[];
 	this.clean()
@@ -27,21 +32,19 @@ Cleaner.prototype.clean = function(){
 }
 function prepare(raw,callback){
 	var c = [];
-	csv.fromPath(raw).on("data", function(data){
+	csv.parseFile(raw).on("data", function(data){
     	
-    	var obj = {
-    		"SERIES" : data[0],
-    		"SHOT" : data[1],
-    		"YEAR" : data[2],
-    		"MON" : data[3],
-    		"LAT" : data[4],
-    		"LONG" : data[5],
-    		"HOB" : data[6],
-    		"TYPE" : data[7],
-    		"PUR" : data[8],
-    		"CRAT" : data[9],
-    		"DEVIC" : data[10],
-    		"WARHEAD" : data[11]
+		var obj = {
+    		"ID#" : data[0],
+    		"SERIES" : data[1],
+    		"SHOT" : data[2],
+    		"YEAR" : data[3],
+    		"MON" : data[4],
+    		"DAY" : data[5],
+    		"TIME" : data[6],
+    		"SITE" : data[7],
+    		"LAT" : data[8],
+    		"LONG" : data[9]
     	}
     	c.push(obj)
  	})
